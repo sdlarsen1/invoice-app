@@ -31,7 +31,7 @@ export class CreateInvoiceDto {
   status: InvoiceStatus;
 
   @ValidateNested()
-  invoiceLines: CreateInvoiceLineDto[];
+  invoiceLines?: CreateInvoiceLineDto[];
 }
 
 export class UpdateInvoiceDto extends PartialType(CreateInvoiceDto) {}

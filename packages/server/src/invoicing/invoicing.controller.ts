@@ -2,6 +2,7 @@ import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { InvoicingService } from 'src/invoicing/invoicing.service';
 import { InvoicingLibrary } from 'src/invoicing/invoicing.library';
 import { CreateInvoiceDto } from 'src/invoicing/invoice/dto/invoice.dto';
+import { CreateInvoiceLineDto } from 'src/invoicing/invoice-line/dto/invoice-line.dto';
 
 @Controller('invoicing')
 export class InvoicingController {
@@ -33,5 +34,10 @@ export class InvoicingController {
   @Get('invoiceLine/:id')
   getInvoiceLine(@Param('id') id: string) {
     return this.invoicingService.getInvoiceLine(id);
+  }
+
+  @Post('invoiceLine')
+  createInvoiceLine(@Body() invoiceLine: CreateInvoiceLineDto) {
+    return this.invoicingLibrary.createInvoiceLine(invoiceLine);
   }
 }
