@@ -1,3 +1,3 @@
 export default () => ({
-  apiEndpoint: process.env.API_ENDPOINT,
+  apiUrl: process.env.API_URL,
 });

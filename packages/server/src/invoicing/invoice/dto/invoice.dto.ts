@@ -1,4 +1,16 @@
 import { IsDate, IsString, ValidateNested } from 'class-validator';
+import { InvoiceStatus } from '../enum/invoice-status.enum';
+
+export class Customer {
+  @IsString()
+  name: string;
+
+  @IsString()
+  email: string;
+
+  @IsString()
+  address: string;
+}
 
 export class CreateInvoiceDto {
   @IsDate()
@@ -15,15 +27,7 @@ export class CreateInvoiceDto {
 
   @ValidateNested()
   billFrom: Customer;
-}
-
-export class Customer {
-  @IsString()
-  name: string;
 
   @IsString()
-  email: string;
-
-  @IsString()
-  address: string;
+  status: InvoiceStatus;
 }

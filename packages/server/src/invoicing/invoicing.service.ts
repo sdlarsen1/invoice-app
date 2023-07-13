@@ -1,29 +1,25 @@
-import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
-import { map } from 'rxjs';
-import { HttpAdapter } from 'src/util/http.adapter';
+import { InvoiceService } from 'src/invoicing/invoice/invoice.service';
+import { InvoiceLineService } from 'src/invoicing/invoice-line/invoice-line.service';
 
 @Injectable()
 export class InvoicingService {
   constructor(
-    private readonly httpService: HttpService,
-    private readonly httpAdapter: HttpAdapter,
+    private readonly invoiceService: InvoiceService,
+    private readonly invoiceLineService: InvoiceLineService,
   ) {}
 
-  async getInvoices(): Promise<any> {
-    return this.httpAdapter.get();
+  // TODO: move this to the lib ?
+
+  getInvoices() {
+    return this.invoiceService.getInvoices();
   }
 
-  async getInvoice(id: string): Promise<any> {
-    return this.httpAdapter.getById(id);
+  getInvoice(id: string) {
+    return this.invoiceService.getInvoice(id);
   }
 
-  async createInvoice(invoice: any): Promise<any> {
-    const url = `https://64af4581c85640541d4e3dde.mockapi.io/api/invoice`;
-    const res = await this.httpService
-      .post(url, invoice)
-      .pipe(map((resp) => resp.data));
-    console.log(res);
-    return res;
+  getInvoiceLines() {
+    return this.invoiceLineService.get();
   }
 }
