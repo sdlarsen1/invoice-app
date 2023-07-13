@@ -1,6 +1,5 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
-import { map } from 'rxjs';
 import { ConfigService } from '@nestjs/config';
 
 type QueryParams = { [key: string]: any };
@@ -12,40 +11,46 @@ export class HttpAdapter {
     private readonly configService: ConfigService,
   ) {}
 
-  // NestJS returns observables, which are great, but we want to return the data directly.
+  // NestJS returns observables natively, which are great, but we want to return the data directly.
 
-  get(endpoint: string, params?: QueryParams) {
+  async get(endpoint: string, params?: QueryParams) {
     let url = `${this.configService.get('apiUrl')}/${endpoint}`;
     if (params) {
       url = `${url}?${Object.keys(params)
         .map((key) => `${key}=${params[key]}`)
         .join('&')}`;
     }
-    return this.httpService.get(url).pipe(map((resp) => resp.data));
+    const res = await this.httpService.axiosRef.get(url);
+    return res.data;
   }
 
-  getById(endpoint: string, id: string) {
+  async getById<T>(endpoint: string, id: string): Promise<T> {
     let url = `${this.configService.get('apiUrl')}/${endpoint}/${id}`;
-    return this.httpService.get(url).pipe(map((resp) => resp.data));
+    const res = await this.httpService.axiosRef.get(url);
+    return res.data;
   }
 
-  post(endpoint: string, value: any) {
+  async post<T>(endpoint: string, value: any): Promise<T> {
     let url = `${this.configService.get('apiUrl')}/${endpoint}`;
-    return this.httpService.post(url, value).pipe(map((resp) => resp.data));
+    const res = await this.httpService.axiosRef.post(url, value);
+    return res.data;
   }
 
-  put(endpoint: string, id: string, value: any) {
+  async put(endpoint: string, id: string, value: any) {
     let url = `${this.configService.get('apiUrl')}/${endpoint}/${id}`;
-    return this.httpService.put(url, value).pipe(map((resp) => resp.data));
+    const res = await this.httpService.axiosRef.put(url, value);
+    return res.data;
   }
 
-  patch(endpoint: string, id: string, value: any) {
+  async patch(endpoint: string, id: string, value: any) {
     let url = `${this.configService.get('apiUrl')}/${endpoint}/${id}`;
-    return this.httpService.patch(url, value).pipe(map((resp) => resp.data));
+    const res = await this.httpService.axiosRef.patch(url, value);
+    return res.data;
   }
 
-  delete(endpoint: string, id: string) {
+  async delete(endpoint: string, id: string) {
     let url = `${this.configService.get('apiUrl')}/${endpoint}/${id}`;
-    return this.httpService.delete(url).pipe(map((resp) => resp.data));
+    const res = await this.httpService.axiosRef.delete(url);
+    return res.data;
   }
 }
