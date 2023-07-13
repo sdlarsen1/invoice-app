@@ -29,4 +29,9 @@ export class InvoicingController {
   getInvoiceLines() {
     return this.invoicingService.getInvoiceLines();
   }
+
+  @Get('invoiceLine/:id')
+  getInvoiceLine(@Param('id') id: string) {
+    return this.invoicingService.getInvoiceLine(id);
+  }
 }

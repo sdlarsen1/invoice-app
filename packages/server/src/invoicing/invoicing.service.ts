@@ -22,4 +22,8 @@ export class InvoicingService {
   getInvoiceLines() {
     return this.invoiceLineService.get();
   }
+
+  getInvoiceLine(id: string) {
+    return this.invoiceLineService.getById(id);
+  }
 }

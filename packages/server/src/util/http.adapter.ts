@@ -12,6 +12,8 @@ export class HttpAdapter {
     private readonly configService: ConfigService,
   ) {}
 
+  // NestJS returns observables, which are great, but we want to return the data directly.
+
   get(endpoint: string, params?: QueryParams) {
     let url = `${this.configService.get('apiUrl')}/${endpoint}`;
     if (params) {

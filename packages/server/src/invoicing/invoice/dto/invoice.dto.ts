@@ -1,7 +1,9 @@
 import { IsDate, IsString, ValidateNested } from 'class-validator';
 import { InvoiceStatus } from '../enum/invoice-status.enum';
+import { PartialType } from '@nestjs/swagger';
+import { CreateInvoiceLineDto } from 'src/invoicing/invoice-line/dto/invoice-line.dto';
 
-export class Customer {
+export class CustomerDto {
   @IsString()
   name: string;
 
@@ -14,20 +16,22 @@ export class Customer {
 
 export class CreateInvoiceDto {
   @IsDate()
-  createdAt: Date;
-
-  @IsDate()
   dueAt: Date;
 
   @IsString()
   description: string;
 
   @ValidateNested()
-  billTo: Customer;
+  billTo: CustomerDto;
 
   @ValidateNested()
-  billFrom: Customer;
+  billFrom: CustomerDto;
 
   @IsString()
   status: InvoiceStatus;
+
+  @ValidateNested()
+  invoiceLines: CreateInvoiceLineDto[];
 }
+
+export class UpdateInvoiceDto extends PartialType(CreateInvoiceDto) {}
