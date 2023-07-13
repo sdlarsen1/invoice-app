@@ -4,6 +4,7 @@ import { CreateInvoiceDto } from 'src/invoicing/invoice/dto/invoice.dto';
 import { InvoiceStatus } from 'src/invoicing/invoice/enum/invoice-status.enum';
 import { InvoiceLineService } from 'src/invoicing/invoice-line/invoice-line.service';
 import { CreateInvoiceLineDto } from 'src/invoicing/invoice-line/dto/invoice-line.dto';
+import { QueryParams } from 'src/util/http.adapter';
 
 @Injectable()
 export class InvoicingLibrary {
@@ -11,6 +12,22 @@ export class InvoicingLibrary {
     private readonly invoiceService: InvoiceService,
     private readonly invoiceLineService: InvoiceLineService,
   ) {}
+
+  getInvoices(params?: QueryParams) {
+    return this.invoiceService.getInvoices(params);
+  }
+
+  getInvoice(id: string) {
+    return this.invoiceService.getInvoice(id);
+  }
+
+  getInvoiceLines(params?: QueryParams) {
+    return this.invoiceLineService.get(params);
+  }
+
+  getInvoiceLine(id: string) {
+    return this.invoiceLineService.getById(id);
+  }
 
   async createInvoice(invoice: CreateInvoiceDto) {
     invoice.status = InvoiceStatus.PENDING;

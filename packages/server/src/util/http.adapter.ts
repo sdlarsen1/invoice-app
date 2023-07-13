@@ -2,7 +2,7 @@ import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 
-type QueryParams = { [key: string]: any };
+export type QueryParams = { [key: string]: any };
 
 @Injectable()
 export class HttpAdapter {

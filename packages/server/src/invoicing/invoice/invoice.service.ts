@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { HttpAdapter } from 'src/util/http.adapter';
+import { HttpAdapter, QueryParams } from 'src/util/http.adapter';
 import { CreateInvoiceDto } from './dto/invoice.dto';
 import { Invoice } from 'src/invoicing/invoice/entity/invoice.entity';
 
@@ -9,8 +9,8 @@ export class InvoiceService {
 
   constructor(private readonly httpAdapter: HttpAdapter) {}
 
-  async getInvoices() {
-    return this.httpAdapter.get(this.endpoint);
+  async getInvoices(params?: QueryParams) {
+    return this.httpAdapter.get(this.endpoint, params);
   }
 
   async getInvoice(id: string) {

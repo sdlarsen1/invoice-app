@@ -13,12 +13,12 @@ export class InvoicingController {
 
   @Get('invoice')
   getInvoices() {
-    return this.invoicingService.getInvoices();
+    return this.invoicingLibrary.getInvoices();
   }
 
   @Get('invoice/:id')
   getInvoice(@Param('id') id: string) {
-    return this.invoicingService.getInvoice(id);
+    return this.invoicingLibrary.getInvoice(id);
   }
 
   @Post()
@@ -28,12 +28,12 @@ export class InvoicingController {
 
   @Get('invoiceLine')
   getInvoiceLines() {
-    return this.invoicingService.getInvoiceLines();
+    return this.invoicingLibrary.getInvoiceLines();
   }
 
   @Get('invoiceLine/:id')
   getInvoiceLine(@Param('id') id: string) {
-    return this.invoicingService.getInvoiceLine(id);
+    return this.invoicingLibrary.getInvoiceLine(id);
   }
 
   @Post('invoiceLine')
