@@ -1,20 +1,23 @@
-import { Button, Paper, Typography } from "@mui/material";
+import { Stack } from "@mui/material";
 import { useGetInvoicesQuery } from "redux/features/invoicing/invoicingApi";
+import CardScroll from "components/CardScroll/CardScroll";
+import ButtonBar from "components/ButtonBar/ButtonBar";
 
 const Invoicing = () => {
-  const { data } = useGetInvoicesQuery();
-  console.log(data);
+  const { data: invoices } = useGetInvoicesQuery();
+  console.log(invoices);
 
   return (
     <>
-      <Paper sx={{ height: "100vh" }}>
-        <Typography variant="h2" fontWeight="bold">
-          Invoicing
-        </Typography>
-        <Button variant="contained" color="primary">
-          Help
-        </Button>
-      </Paper>
+      <Stack
+        justifyContent="flex-start"
+        alignItems="center"
+        spacing={4}
+        sx={{ height: "100vh", overflow: "hidden" }}
+      >
+        <ButtonBar />
+        <CardScroll invoices={invoices} />
+      </Stack>
     </>
   );
 };

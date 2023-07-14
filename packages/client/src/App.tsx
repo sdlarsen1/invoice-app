@@ -8,7 +8,7 @@ import BaseContainer from "components/BaseContainer/BaseContainer";
 function App() {
   return (
     <Paper className="App">
-      <AppBar position="static">
+      <AppBar position="sticky">
         <Toolbar variant="dense">
           <IconButton edge="start">
             <SmartToyIcon />

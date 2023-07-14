@@ -9,4 +9,5 @@ export type Invoice = {
   status: InvoiceStatus;
   billTo: Customer;
   billFrom: Customer;
+  total: number;
 };

@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InvoiceService } from 'src/invoicing/invoice/invoice.service';
 import { CreateInvoiceDto } from 'src/invoicing/invoice/dto/invoice.dto';
-import { InvoiceStatus } from 'src/invoicing/invoice/enum/invoice-status.enum';
 import { InvoiceLineService } from 'src/invoicing/invoice-line/invoice-line.service';
 import { CreateInvoiceLineDto } from 'src/invoicing/invoice-line/dto/invoice-line.dto';
 import { QueryParams } from 'src/util/http.adapter';
@@ -30,7 +29,7 @@ export class InvoicingLibrary {
   }
 
   async createInvoice(invoice: CreateInvoiceDto) {
-    invoice.status = InvoiceStatus.PENDING;
+    // invoice.status = InvoiceStatus.PENDING;
     const createdInvoice = await this.invoiceService.createInvoice(invoice);
 
     const invoiceLines = await Promise.all(
