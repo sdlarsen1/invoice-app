@@ -1,28 +1,22 @@
 import React from "react";
 import "./App.css";
-import AppBar from "./components/AppBar";
 import Invoicing from "./screens/Invoicing/Invoicing";
+import { AppBar, IconButton, Paper } from "@mui/material";
+import SmartToyIcon from "@mui/icons-material/SmartToy";
+import BaseContainer from "components/BaseContainer/BaseContainer";
 
 function App() {
   return (
-    <div className="App">
-      <AppBar />
-      <Invoicing />
-      {/*<header className="App-header">*/}
-      {/*  <img src={logo} className="App-logo" alt="logo" />*/}
-      {/*  <p>*/}
-      {/*    Edit <code>src/App.tsx</code> and save to reload.*/}
-      {/*  </p>*/}
-      {/*  <a*/}
-      {/*    className="App-link"*/}
-      {/*    href="https://reactjs.org"*/}
-      {/*    target="_blank"*/}
-      {/*    rel="noopener noreferrer"*/}
-      {/*  >*/}
-      {/*    Learn React*/}
-      {/*  </a>*/}
-      {/*</header>*/}
-    </div>
+    <Paper className="App">
+      <AppBar position="static">
+        <IconButton>
+          <SmartToyIcon />
+        </IconButton>
+      </AppBar>
+      <BaseContainer>
+        <Invoicing />
+      </BaseContainer>
+    </Paper>
   );
 }
 
