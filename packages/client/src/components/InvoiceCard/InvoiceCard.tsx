@@ -10,6 +10,7 @@ import {
 import EditIcon from "@mui/icons-material/Edit";
 import { Invoice } from "app/domain/entities/Invoice";
 import StatusChip from "components/InvoiceCard/StatusChip";
+import { useInvoiceModalContext } from "components/InvoiceModal/Provider";
 
 const StyledCard = styled(Card)((theme) => ({
   "&hover": {
@@ -22,6 +23,9 @@ type P = {
 };
 
 const InvoiceCard = ({ invoice }: P) => {
+  const { invoiceModal } = useInvoiceModalContext();
+  const handleClick = () => invoiceModal.open({ payload: {} });
+
   return (
     <StyledCard variant="outlined" color="background">
       <CardContent>
@@ -39,7 +43,7 @@ const InvoiceCard = ({ invoice }: P) => {
           >
             <StatusChip status={invoice.status} />
             <Tooltip title="Edit" placement="top">
-              <IconButton>
+              <IconButton onClick={handleClick}>
                 <EditIcon />
               </IconButton>
             </Tooltip>

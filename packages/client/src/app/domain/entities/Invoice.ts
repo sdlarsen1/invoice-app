@@ -1,5 +1,6 @@
 import { InvoiceStatus } from "app/domain/constants/InvoiceStatus";
 import { Customer } from "app/domain/entities/Customer";
+import { InvoiceLine } from "app/domain/entities/InvoiceLine";
 
 export type Invoice = {
   id: string;
@@ -10,4 +11,5 @@ export type Invoice = {
   billTo: Customer;
   billFrom: Customer;
   total: number;
+  invoiceLines?: InvoiceLine[];
 };
