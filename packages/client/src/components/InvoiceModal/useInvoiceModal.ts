@@ -1,9 +1,7 @@
 import { useCallback, useState } from "react";
 import { Invoice } from "app/domain/entities/Invoice";
 
-type Payload = Partial<{
-  invoice: Invoice;
-}>;
+type Payload = Invoice;
 
 type OpenParams = {
   payload: Payload;
@@ -11,7 +9,7 @@ type OpenParams = {
 
 export const useInvoiceModal = () => {
   const [isOpen, setOpen] = useState(false);
-  const [payload, setPayload] = useState<Payload>({});
+  const [payload, setPayload] = useState<Payload | undefined>(undefined);
 
   const toggle = useCallback(() => {
     setOpen((prev) => !prev);

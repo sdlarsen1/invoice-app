@@ -24,7 +24,7 @@ type P = {
 
 const InvoiceCard = ({ invoice }: P) => {
   const { invoiceModal } = useInvoiceModalContext();
-  const handleClick = () => invoiceModal.open({ payload: {} });
+  const handleClick = () => invoiceModal.open({ payload: invoice });
 
   return (
     <StyledCard variant="outlined" color="background">
