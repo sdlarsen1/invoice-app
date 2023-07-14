@@ -3,6 +3,11 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    next();
+  });
+
   console.log(
     '\x1b[33m%s\x1b[0m',
     `\n.--------------------------------------------------------------------------.\n` +
