@@ -11,5 +11,6 @@ export type Invoice = {
   billTo: Customer;
   billFrom: Customer;
   total: number;
+  notes?: string;
   invoiceLines?: InvoiceLine[];
 };
