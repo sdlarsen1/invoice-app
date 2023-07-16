@@ -7,9 +7,10 @@ type P = {
   control: Control;
   setValue: UseFormSetValue<any>;
   isBillTo?: boolean;
+  isNew?: boolean;
 };
 
-const CustomerCard = ({ setValue, control, isBillTo }: P) => {
+const CustomerCard = ({ setValue, control, isBillTo, isNew = false }: P) => {
   return (
     <InvoiceComponent>
       <Stack>

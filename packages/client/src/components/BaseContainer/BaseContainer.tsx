@@ -4,6 +4,7 @@ import { ReactNode } from "react";
 const StyledBaseContainer = styled(Box)(({ theme }) => ({
   padding: theme.spacing(2),
   overflow: "none",
+  backgroundColor: theme.palette.background.default,
 }));
 
 type P = {

@@ -1,20 +1,23 @@
 import {
+  Box,
   Card,
   CardContent,
-  IconButton,
-  Stack,
   styled,
   Tooltip,
   Typography,
 } from "@mui/material";
-import EditIcon from "@mui/icons-material/Edit";
 import { Invoice } from "app/domain/entities/Invoice";
 import StatusChip from "components/InvoiceCard/StatusChip";
 import { useInvoiceModalContext } from "components/InvoiceModal/Provider";
 
-const StyledCard = styled(Card)((theme) => ({
-  "&hover": {
-    border: "1px solid pink",
+const StyledCard = styled(Card)(({ theme }) => ({
+  cursor: "pointer",
+  minWidth: 200,
+  minHeight: 220,
+  border: "1px solid transparent",
+  ":hover": {
+    border: "1px solid",
+    borderColor: theme.palette.secondary.main,
   },
 }));
 
@@ -27,29 +30,20 @@ const InvoiceCard = ({ invoice }: P) => {
   const handleClick = () => invoiceModal.open({ payload: invoice });
 
   return (
-    <StyledCard variant="outlined" color="background">
-      <CardContent>
-        <Stack spacing={2} paddingX={2} paddingY={1}>
+    <StyledCard variant="elevation" color="background" onClick={handleClick}>
+      <Tooltip title="Click to view invoice" placement="top" enterDelay={1000}>
+        <CardContent>
           <Typography variant="h6" component="span">
             {invoice.billTo.name || "Anonymous"}
           </Typography>
-          <Typography variant="h4" color="primary">
+          <Typography variant="h4" color="primary" marginY={4}>
             {`$${invoice.total}`}
           </Typography>
-          <Stack
-            direction="row"
-            justifyContent="space-between"
-            alignItems="center"
-          >
+          <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}>
             <StatusChip status={invoice.status} />
-            <Tooltip title="Edit" placement="top">
-              <IconButton onClick={handleClick}>
-                <EditIcon />
-              </IconButton>
-            </Tooltip>
-          </Stack>
-        </Stack>
-      </CardContent>
+          </Box>
+        </CardContent>
+      </Tooltip>
     </StyledCard>
   );
 };
