@@ -27,7 +27,8 @@ type P = {
 
 const InvoiceCard = ({ invoice }: P) => {
   const { invoiceModal } = useInvoiceModalContext();
-  const handleClick = () => invoiceModal.open({ payload: invoice });
+  const handleClick = () =>
+    invoiceModal.open({ payload: { invoice, isNew: true } });
 
   return (
     <StyledCard variant="elevation" color="background" onClick={handleClick}>

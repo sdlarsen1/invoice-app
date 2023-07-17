@@ -5,7 +5,7 @@ import ButtonBar from "components/ButtonBar/ButtonBar";
 import InvoiceModalProvider from "components/InvoiceModal/Provider";
 
 const Invoicing = () => {
-  const { data: invoices } = useGetInvoicesQuery();
+  const { data: invoices, isFetching } = useGetInvoicesQuery();
   console.log(invoices);
 
   return (
@@ -17,7 +17,9 @@ const Invoicing = () => {
         sx={{ height: "100vh", overflow: "hidden" }}
       >
         <ButtonBar />
-        <CardScroll invoices={invoices} />
+        {!isFetching && (
+          <CardScroll invoices={invoices} isFetching={isFetching} />
+        )}
       </Stack>
     </InvoiceModalProvider>
   );

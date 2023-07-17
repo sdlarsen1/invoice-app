@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import { Invoice } from "app/domain/entities/Invoice";
 
-type Payload = Invoice;
+type Payload = { invoice: Invoice; isNew: boolean };
 
 type OpenParams = {
   payload: Payload;
