@@ -13,7 +13,7 @@ type P = {
 const CustomerCard = ({ setValue, control, isBillTo, isNew = false }: P) => {
   return (
     <InvoiceComponent>
-      <Stack>
+      <Stack spacing={1}>
         <Typography>{isBillTo ? "Bill To:" : "Bill From:"}</Typography>
         <ControlledTextField
           control={control}

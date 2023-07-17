@@ -19,6 +19,7 @@ const ControlledTextField = ({ fieldName, control, label }: P) => {
             value={field.value}
             onChange={field.onChange}
             label={label}
+            variant="filled"
           />
         );
       }}
