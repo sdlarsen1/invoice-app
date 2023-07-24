@@ -11,8 +11,12 @@ import { useState } from "react";
 import { useColumnDef } from "components/InvoiceModal/InvoiceComponents/InvoiceItemGrid/columnDef";
 import InvoiceComponent from "components/InvoiceModal/InvoiceComponents/InvoiceComponent";
 
-const InvoiceItemGrid = () => {
-  const [rows, setRows] = useState<GridRowsProp>([]);
+type P = {
+  rows: GridRowsProp;
+  setRows: any;
+};
+
+const InvoiceItemGrid = ({ rows, setRows }: P) => {
   const [rowModesModel, setRowModesModel] = useState<GridRowModesModel>({});
 
   const processRowUpdate = (newRow: GridRowModel) => {

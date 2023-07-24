@@ -13,6 +13,9 @@ import CustomerCard from "components/InvoiceModal/InvoiceComponents/CustomerCard
 import { useInvoiceSubmit } from "components/InvoiceModal/InvoiceComponents/useInvoiceSubmit";
 import InvoiceItemGrid from "components/InvoiceModal/InvoiceComponents/InvoiceItemGrid/InvoiceItemGrid";
 import DateRow from "components/InvoiceModal/InvoiceComponents/DateRow";
+import ControlledNotesField from "components/InvoiceModal/InvoiceComponents/ControlledNotesField";
+import { useState } from "react";
+import { GridRowsProp } from "@mui/x-data-grid";
 
 const StyledDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialog-paper": {
@@ -33,6 +36,7 @@ const StyledDialogTitle = styled(DialogTitle)(({ theme }) => ({
 type P = { isFetching: boolean };
 
 const InvoiceModal = ({ isFetching }: P) => {
+  const [rows, setRows] = useState<GridRowsProp>([]);
   const { invoiceModal } = useInvoiceModalContext();
   const invoice = invoiceModal.payload?.invoice;
   const isNew = invoiceModal.payload?.isNew;
@@ -70,7 +74,8 @@ const InvoiceModal = ({ isFetching }: P) => {
               <CustomerCard control={control} setValue={setValue} isBillTo />
               <CustomerCard control={control} setValue={setValue} />
             </Stack>
-            <InvoiceItemGrid />
+            <InvoiceItemGrid rows={rows} setRows={setRows} />
+            <ControlledNotesField control={control} />
           </Stack>
         </DialogContent>
       </form>
